@@ -1,4 +1,5 @@
-from PySide2 import QtWidgets
+from PySide2 import QtWidgets, QtCore
+import app.tools as tools
 
 class MainWindow(QtWidgets.QWidget):
     def __init__(self):
@@ -15,6 +16,9 @@ class MainWindow(QtWidgets.QWidget):
     def create_display_text(self, layout_variable):
         self.textEdit_display = QtWidgets.QTextEdit()
         self.textEdit_display.setReadOnly(True)
+        self.textEdit_display.setTextInteractionFlags (QtCore.Qt.NoTextInteraction)
+
+        self.textEdit_display.setText(tools.pick_text())
 
         layout_variable.addWidget(self.textEdit_display)
 
