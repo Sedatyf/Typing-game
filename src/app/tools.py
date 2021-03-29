@@ -5,6 +5,7 @@ import random
 current_path = os.path.dirname(os.path.realpath(__file__))
 sources_path = os.path.join(current_path, "sources.json")
 
+
 def pick_text():
     with open(sources_path, "r") as f:
         json_text = json.load(f)

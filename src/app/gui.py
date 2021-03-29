@@ -12,6 +12,7 @@ class MainWindow(QtWidgets.QWidget):
         self.create_display_text(self.layout)
         self.create_text_input(self.layout)
 
+        self.highlight_next_character()
         self.connect_widgets()
 
 
@@ -37,6 +38,7 @@ class MainWindow(QtWidgets.QWidget):
 
     def connect_widgets(self):
         self.lineEdit_user_input.textChanged.connect(self.check_input)
+        self.lineEdit_user_input.textChanged.connect(self.highlight_next_character)
 
 
     def check_input(self, input):
@@ -48,4 +50,20 @@ class MainWindow(QtWidgets.QWidget):
             self.lineEdit_user_input.setStyleSheet("background-color: white")
         else:
             self.lineEdit_user_input.setStyleSheet("background-color: rgba(255, 0, 0, 0.4)")
+    
+
+
+    def highlight_next_character(self, input=""):
+        list_character = list(self.chosen_text)
+        char_index = len(input) + 1
+        next_char = list_character[len(input):char_index]
+        separator = ""
+        first_part = separator.join(list_character[0:len(input)])
+        bold_char = f"<b style=\"color: green\">{next_char[0]}</b>".strip()
+        end_part = separator.join(list_character[char_index:])
+
+        if(input == ""):
+            self.textEdit_display.setHtml(f"<html><body><p><b style=\"color: green\">{separator.join(list_character[0])}</b>{separator.join(list_character[char_index:])}</p></body></html>")
+        else:    
+            self.textEdit_display.setHtml(f"<html><body><p>{first_part}{bold_char}{end_part}</p></body></html>")
             
