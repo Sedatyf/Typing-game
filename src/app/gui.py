@@ -21,11 +21,13 @@ class MainWindow(QtWidgets.QWidget):
         self.textEdit_display.setReadOnly(True)
         self.textEdit_display.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.textEdit_display.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.textEdit_display.setStyleSheet("font: 12pt")
 
         self.chosen_text = tools.pick_text()
 
         self.textEdit_display.setText(self.chosen_text)
-        layout_variable.addWidget(self.textEdit_display)
+
+        layout_variable.addWidget(self.textEdit_display, 0, 0)
 
 
     def create_text_input(self, layout_variable):
@@ -33,7 +35,7 @@ class MainWindow(QtWidgets.QWidget):
         self.lineEdit_user_input.setPlaceholderText("Type here")
         self.lineEdit_user_input.setFocusPolicy(QtCore.Qt.StrongFocus)
 
-        layout_variable.addWidget(self.lineEdit_user_input)
+        layout_variable.addWidget(self.lineEdit_user_input, 7, 0)
 
 
     def connect_widgets(self):
@@ -47,11 +49,10 @@ class MainWindow(QtWidgets.QWidget):
         expected_char = list_character[0:len(input)]
 
         if list_input == expected_char:
-            self.lineEdit_user_input.setStyleSheet("background-color: white")
+            self.lineEdit_user_input.setStyleSheet("background-color: white; font: 12pt")
         else:
-            self.lineEdit_user_input.setStyleSheet("background-color: rgba(255, 0, 0, 0.4)")
+            self.lineEdit_user_input.setStyleSheet("background-color: rgba(255, 0, 0, 0.4); font: 12pt")
     
-
 
     def highlight_next_character(self, input=""):
         list_character = list(self.chosen_text)
@@ -66,4 +67,3 @@ class MainWindow(QtWidgets.QWidget):
             self.textEdit_display.setHtml(f"<html><body><p><b style=\"color: green\">{separator.join(list_character[0])}</b>{separator.join(list_character[char_index:])}</p></body></html>")
         else:    
             self.textEdit_display.setHtml(f"<html><body><p>{first_part}{bold_char}{end_part}</p></body></html>")
-            
