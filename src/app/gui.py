@@ -7,6 +7,7 @@ class MainWindow(QtWidgets.QWidget):
         self.chosen_text = tools.pick_text()
 
         self.setWindowTitle("Typing Game")
+        self.setWindowIcon(QtGui.QIcon("img/icon.png"))
 
         self.layout = QtWidgets.QGridLayout(self)
 
