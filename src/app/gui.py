@@ -24,11 +24,16 @@ class MainWindow(QtWidgets.QWidget):
 
     def create_display_text(self, layout_variable):
         self.label_display = QtWidgets.QLabel()
-        self.label_display.setTextFormat(QtCore.Qt.RichText)
-        self.label_display.setWordWrap(True)
+        self.label_display.setTextFormat(QtCore.Qt.RichText) # accept html text
+        self.label_display.setWordWrap(True) # Multiline label
+
+        self.label_display.setMaximumWidth(800)
+
+        current_width = self.label_display.width()
+        self.label_display.setFixedWidth(current_width + 20)
 
         self.label_display.setText(self.chosen_text)
-
+        
         layout_variable.addWidget(self.label_display)
 
 
