@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtCore
+from PySide2 import QtGui, QtWidgets, QtCore
 import app.tools as tools
 
 class MainWindow(QtWidgets.QWidget):
@@ -9,6 +9,10 @@ class MainWindow(QtWidgets.QWidget):
 
         self.layout = QtWidgets.QGridLayout(self)
 
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.setFont(font)
+
         self.create_display_text(self.layout)
         self.create_text_input(self.layout)
 
@@ -17,17 +21,15 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def create_display_text(self, layout_variable):
-        self.textEdit_display = QtWidgets.QTextEdit()
-        self.textEdit_display.setReadOnly(True)
-        self.textEdit_display.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
-        self.textEdit_display.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.textEdit_display.setStyleSheet("font: 12pt")
+        self.label_display = QtWidgets.QLabel()
+        self.label_display.setTextFormat(QtCore.Qt.RichText)
+        self.label_display.setWordWrap(True)
 
         self.chosen_text = tools.pick_text()
+        self.label_display.setText(self.chosen_text)
+        self.label_display.setMaximumWidth(800)
 
-        self.textEdit_display.setText(self.chosen_text)
-
-        layout_variable.addWidget(self.textEdit_display, 0, 0)
+        layout_variable.addWidget(self.label_display)
 
 
     def create_text_input(self, layout_variable):
@@ -35,7 +37,7 @@ class MainWindow(QtWidgets.QWidget):
         self.lineEdit_user_input.setPlaceholderText("Type here")
         self.lineEdit_user_input.setFocusPolicy(QtCore.Qt.StrongFocus)
 
-        layout_variable.addWidget(self.lineEdit_user_input, 7, 0)
+        layout_variable.addWidget(self.lineEdit_user_input)
 
 
     def connect_widgets(self):
@@ -64,6 +66,6 @@ class MainWindow(QtWidgets.QWidget):
         end_part = separator.join(list_character[char_index:])
 
         if(input == ""):
-            self.textEdit_display.setHtml(f"<html><body><p><b style=\"color: green\">{separator.join(list_character[0])}</b>{separator.join(list_character[char_index:])}</p></body></html>")
+            self.label_display.setText(f"<html><body><p><b style=\"color: green\">{separator.join(list_character[0])}</b>{separator.join(list_character[char_index:])}</p></body></html>")
         else:    
-            self.textEdit_display.setHtml(f"<html><body><p>{first_part}{bold_char}{end_part}</p></body></html>")
+            self.label_display.setText(f"<html><body><p>{first_part}{bold_char}{end_part}</p></body></html>")
