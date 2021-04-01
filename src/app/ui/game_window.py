@@ -12,12 +12,20 @@ class GameWindow(QtWidgets.QDialog):
         font.setPointSize(12)
         self.setFont(font)
 
+        self.create_buttons(self.layout)
         self.create_progress_bar(self.layout)
         self.create_display_text(self.layout)
         self.create_text_input(self.layout)
 
         self.highlight_next_character()
         self.connect_widgets()
+
+
+    def create_buttons(self, layout_variable):
+        self.button_back = QtWidgets.QPushButton("<")
+        self.button_back.setFixedWidth(30)
+
+        layout_variable.addWidget(self.button_back)
 
 
     def create_display_text(self, layout_variable):
@@ -88,3 +96,7 @@ class GameWindow(QtWidgets.QDialog):
     def update_progress_bar(self, input):
         current_progress = len(list(input))
         self.progress_bar.setValue(current_progress)
+
+
+    def back_main_menu(self, widget):
+         widget.setCurrentIndex(0)

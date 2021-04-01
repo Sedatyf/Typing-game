@@ -1,4 +1,4 @@
-from PySide2 import QtGui, QtWidgets
+from PySide2 import QtGui, QtWidgets, QtCore
 
 
 class MenuWindow(QtWidgets.QDialog):
@@ -11,15 +11,24 @@ class MenuWindow(QtWidgets.QDialog):
         font.setPointSize(12)
         self.setFont(font)
 
-        self.create_start_button(self.layout)
+        self.create_buttons(self.layout)
 
     
-    def create_start_button(self, layout_variable):
-        self.button = QtWidgets.QPushButton("Start")
+    def create_buttons(self, layout_variable):
+        self.button_start = QtWidgets.QPushButton("Start")
+        self.button_options = QtWidgets.QPushButton("Options")
 
-        layout_variable.addWidget(self.button)
+        self.button_start.setFixedWidth(130)
+        self.button_options.setFixedWidth(130)
+
+        layout_variable.addWidget(self.button_start, alignment=QtCore.Qt.AlignCenter)
+        layout_variable.addWidget(self.button_options, alignment=QtCore.Qt.AlignCenter)
 
 
-    def goto_main_window(self, widget):
-        widget.setCurrentIndex(widget.currentIndex()+1)
+    def goto_game_window(self, widget):
+        widget.setCurrentIndex(1)
+    
+
+    def goto_options_window(self, widget):
+        widget.setCurrentIndex(2)
 
