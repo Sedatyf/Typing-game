@@ -1,8 +1,8 @@
 from PySide2 import QtWidgets, QtGui
 from functools import partial
 
-import app.game_window as gw
-import app.start_menu as sm
+import app.ui.game_window as gw
+import app.ui.start_menu as sm
 
 
 app = QtWidgets.QApplication([])
