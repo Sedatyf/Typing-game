@@ -1,13 +1,10 @@
 from PySide2 import QtGui, QtWidgets, QtCore
 import app.tools as tools
 
-class MainWindow(QtWidgets.QWidget):
+class GameWindow(QtWidgets.QDialog):
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(GameWindow, self).__init__()
         self.chosen_text = tools.pick_text()
-
-        self.setWindowTitle("Typing Game")
-        self.setWindowIcon(QtGui.QIcon("img/icon.png"))
 
         self.layout = QtWidgets.QGridLayout(self)
 
