@@ -15,8 +15,7 @@ def pick_text():
     for _, value in json_text.items():
         text_list.append(value)
     
-    random_text = random.choice(text_list)
-    return random_text
+    return random.choice(text_list)
 
 
 if __name__ == "__main__":
