@@ -24,15 +24,16 @@ class GameWindow(QtWidgets.QDialog):
     def create_buttons(self, layout_variable):
         self.button_back = QtWidgets.QPushButton("<")
         self.button_back.setFixedWidth(30)
+        self.button_back.setFocusPolicy(QtCore.Qt.NoFocus)
 
-        layout_variable.addWidget(self.button_back)
+        layout_variable.addWidget(self.button_back, 0, 0, 1, 1)
 
 
     def create_display_text(self, layout_variable):
         self.label_display = QtWidgets.QLabel()
         self.label_display.setTextFormat(QtCore.Qt.RichText) # accept html text
         self.label_display.setWordWrap(True) # Multiline label
-
+        self.label_display.setSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         self.label_display.setMaximumWidth(800)
 
         current_width = self.label_display.width()
@@ -40,7 +41,7 @@ class GameWindow(QtWidgets.QDialog):
 
         self.label_display.setText(self.chosen_text)
         
-        layout_variable.addWidget(self.label_display)
+        layout_variable.addWidget(self.label_display, 2, 0, 1, 5)
 
 
     def create_text_input(self, layout_variable):
@@ -48,23 +49,24 @@ class GameWindow(QtWidgets.QDialog):
         self.lineEdit_user_input.setPlaceholderText("Type here")
         self.lineEdit_user_input.setFocusPolicy(QtCore.Qt.StrongFocus)
 
-        layout_variable.addWidget(self.lineEdit_user_input)
+        layout_variable.addWidget(self.lineEdit_user_input, 3, 0 , 1, 5)
 
 
     def create_progress_bar(self, layout_variable):
-        max_value = len(list(self.chosen_text))
+        self.max_value = len(list(self.chosen_text))
 
         self.progress_bar = QtWidgets.QProgressBar()
         self.progress_bar.setMinimum(0)
-        self.progress_bar.setMaximum(max_value)
+        self.progress_bar.setMaximum(self.max_value)
 
-        layout_variable.addWidget(self.progress_bar)
+        layout_variable.addWidget(self.progress_bar, 1, 0, 1, 5)
 
 
     def connect_widgets(self):
         self.lineEdit_user_input.textChanged.connect(self.check_input)
         self.lineEdit_user_input.textChanged.connect(self.highlight_next_character)
         self.lineEdit_user_input.textChanged.connect(self.update_progress_bar)
+        self.button_back.clicked.connect(self.reset_game)
 
 
     def check_input(self, input):
@@ -100,3 +102,16 @@ class GameWindow(QtWidgets.QDialog):
 
     def back_main_menu(self, widget):
          widget.setCurrentIndex(0)
+
+
+    def reset_game(self):
+        self.lineEdit_user_input.clear()
+        self.chosen_text = tools.pick_text()
+        self.max_value = len(list(self.chosen_text))
+        self.progress_bar.setMaximum(self.max_value)
+
+        self.label_display.setText(self.chosen_text)
+
+        lines = round(len(self.chosen_text) / 72)
+        self.label_display.setFixedHeight(lines * 20)
+        

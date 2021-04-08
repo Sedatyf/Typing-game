@@ -27,6 +27,7 @@ class MenuWindow(QtWidgets.QDialog):
 
     def goto_game_window(self, widget):
         widget.setCurrentIndex(1)
+        widget.adjustSize()
     
 
     def goto_options_window(self, widget):
