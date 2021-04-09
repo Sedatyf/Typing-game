@@ -1,5 +1,7 @@
 from PySide2 import QtGui, QtWidgets, QtCore
+
 import app.tools as tools
+
 
 class GameWindow(QtWidgets.QDialog):
     def __init__(self):
@@ -104,8 +106,9 @@ class GameWindow(QtWidgets.QDialog):
          widget.setCurrentIndex(0)
 
 
-    def go_to_end(self, widget, input):
+    def go_to_end(self, widget, end_window, input):
         if input == self.chosen_text:
+            end_window.set_text_informations(self.chosen_text)
             widget.setCurrentIndex(3)
 
 

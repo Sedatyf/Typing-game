@@ -23,7 +23,7 @@ def connect_objects():
     options_window.button_back.clicked.connect(partial(options_window.back_main_menu, stack_widget))
 
     game_window.button_back.clicked.connect(partial(game_window.back_main_menu, stack_widget))
-    game_window.lineEdit_user_input.textChanged.connect(partial(game_window.go_to_end, stack_widget))
+    game_window.lineEdit_user_input.textChanged.connect(partial(game_window.go_to_end, stack_widget, end_window))
 
     end_window.button_restart.clicked.connect(partial(end_window.restart_game, game_window, stack_widget))
 

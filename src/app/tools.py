@@ -27,12 +27,23 @@ def write_to_sources(title, author, text, type):
             "title": title,
             "author": author,
             "text": text,
-            "type": type
+            "work_type": type
         }
         json_data_from_list.append(item_to_add)
     with open(sources_path, "w") as f:
         json.dump(json_data, f, indent=4, ensure_ascii=False)
 
+
+def retrieve_text_indice(filepath, text_to_retrieve):
+    with open(filepath, "r") as f:
+        json_file = json.load(f)
+
+    text_list = []
+    texts = json_file.get("texts")
+    for item in texts:
+        text_list.append(item["text"])
+    
+    return text_list.index(text_to_retrieve)
 
 
 if __name__ == "__main__":
