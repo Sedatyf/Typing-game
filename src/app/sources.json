@@ -1,7 +1,46 @@
 {
-    "text01": "Attention, ce flim n'est pas un flim sur le cyclimse. Merci de votre compréhension.",
-    "text02": "Excuse-moi de te dire ça, mon pauvre José, mais tu confonds un peu tout. Tu fais un amalgame entre la coquetterie et la classe. Tu es fou. Tu dépenses tout ton argent dans les habits et accessoires de mode mais tu es ridicule. Enfin si ça te plaît. C'est toi qui les portes. Mais moi, si tu veux mon opinion, ça fait un peu... has been.",
-    "text03": "Philiiiiiipe, je sais où tu te caches, viens ici que j'te bute enculé ! - Ta gueule ! Viens ici sale enculé !",
-    "text04": "Je vous hais tous au plus haut point, vous et votre clique de terroristes vous n’êtes qu'un sale gang d’assassins de bas étage des putains d’enfoirés qui font chier la terre entière et encore je reste poli donc si vous voulez vous adressez à moi, essayez plutôt de causer à mes burnes.",
-    "text05": "Lorsque je vois un adulte de sexe masculin courir derrière une femelle avec l'intention évidente de la violer, je le descends avant, c'est ma politique"
+    "texts": [
+        {
+            "title": "La classe américaine",
+            "author": "Michel Hazanavicius, Dominique Mezerette",
+            "text": "Attention, ce flim n'est pas un flim sur le cyclimse. Merci de votre compréhension.",
+            "type": "movie"
+        },
+        {
+            "title": "La classe américaine",
+            "author": "Michel Hazanavicius, Dominique Mezerette",
+            "text": "Excuse-moi de te dire ça, mon pauvre José, mais tu confonds un peu tout. Tu fais un amalgame entre la coquetterie et la classe. Tu es fou. Tu dépenses tout ton argent dans les habits et accessoires de mode mais tu es ridicule. Enfin si ça te plaît. C'est toi qui les portes. Mais moi, si tu veux mon opinion, ça fait un peu... has been.",
+            "type": "movie"
+        },
+        {
+            "title": "Hitman The Cobra",
+            "author": "Godfrey Ho",
+            "text": "Philiiiiiipe, je sais où tu te caches, viens ici que j'te bute enculé ! - Ta gueule ! Viens ici sale enculé !",
+            "type": "movie"
+        },
+        {
+            "title": "Air Strike",
+            "author": "David Worth",
+            "text": "Je vous hais tous au plus haut point, vous et votre clique de terroristes vous n'êtes qu'un sale gang d'assassins de bas étage des putains d'enfoirés qui font chier la terre entière et encore je reste poli donc si vous voulez vous adressez à moi, essayez plutôt de causer à mes burnes.",
+            "type": "movie"
+        },
+        {
+            "title": "Dirty Harry",
+            "author": "Don Siegel",
+            "text": "Lorsque je vois un adulte de sexe masculin courir derrière une femelle avec l'intention évidente de la violer, je le descends avant, c'est ma politique",
+            "type": "movie"
+        },
+        {
+            "title": "La cité de la peur",
+            "author": "Alain Berbérian",
+            "text": "- Qu'est ce qui y'a ! Vous êtes malade en voiture ? - Non, c'est quand je suis content je vomis, et là, là je suis super content.",
+            "type": "movie"
+        },
+        {
+            "title": "La cité de la peur",
+            "author": "Alain Berbérian",
+            "text": "- Vous voulez un whisky ? - Non, juste un doigt. - Vous voulez pas un whisky d'abord ?",
+            "type": "movie"
+        }
+    ]
 }
