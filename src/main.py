@@ -4,6 +4,7 @@ from functools import partial
 import app.ui.game_window as gw
 import app.ui.start_menu as sm
 import app.ui.options_window as ow
+import app.ui.end_window as ew
 
 
 app = QtWidgets.QApplication([])
@@ -15,15 +16,19 @@ stack_widget = QtWidgets.QStackedWidget()
 menu_window = sm.MenuWindow()
 game_window = gw.GameWindow()
 options_window = ow.OptionsWindow()
+end_window = ew.EndWindow()
 
 stack_widget.addWidget(menu_window)
 stack_widget.addWidget(game_window)
 stack_widget.addWidget(options_window)
+stack_widget.addWidget(end_window)
 
 menu_window.button_start.clicked.connect(partial(menu_window.goto_game_window, stack_widget))
 menu_window.button_options.clicked.connect(partial(menu_window.goto_options_window, stack_widget))
 options_window.button_back.clicked.connect(partial(options_window.back_main_menu, stack_widget))
 game_window.button_back.clicked.connect(partial(game_window.back_main_menu, stack_widget))
+game_window.lineEdit_user_input.textChanged.connect(partial(game_window.go_to_end, stack_widget))
+end_window.button_restart.clicked.connect(partial(end_window.restart_game, game_window, stack_widget))
 
 stack_widget.show()
 

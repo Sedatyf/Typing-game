@@ -93,7 +93,7 @@ class GameWindow(QtWidgets.QDialog):
             self.label_display.setText(f"<html><body><p><b style=\"color: green\">{separator.join(list_character[0])}</b>{separator.join(list_character[char_index:])}</p></body></html>")
         else:    
             self.label_display.setText(f"<html><body><p>{first_part}{bold_char}{end_part}</p></body></html>")
-
+ 
 
     def update_progress_bar(self, input):
         current_progress = len(list(input))
@@ -102,6 +102,11 @@ class GameWindow(QtWidgets.QDialog):
 
     def back_main_menu(self, widget):
          widget.setCurrentIndex(0)
+
+
+    def go_to_end(self, widget, input):
+        if input == self.chosen_text:
+            widget.setCurrentIndex(3)
 
 
     def reset_game(self):
