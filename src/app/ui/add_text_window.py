@@ -1,4 +1,5 @@
 from PySide2 import QtGui, QtWidgets, QtCore
+import app.tools as tools
 
 
 class AddTextWindow(QtWidgets.QDialog):
@@ -13,6 +14,8 @@ class AddTextWindow(QtWidgets.QDialog):
 
         self.create_inputs(self.layout)
         self.create_buttons(self.layout)
+
+        self.connect_widgets()
 
     
     def create_inputs(self, layout_variable):
@@ -47,6 +50,51 @@ class AddTextWindow(QtWidgets.QDialog):
         layout_variable.addWidget(self.button_back, 8, 3, 1, 1)
         layout_variable.addWidget(self.button_save, 8, 4, 1, 1)
 
+
+    def connect_widgets(self):
+        self.button_save.clicked.connect(self.save_text)
+
+
+    def save_text(self):
+        saved_title = self.le_title.text()
+        saved_author = self.le_author.text()
+        saved_text = self.le_text.text()
+        saved_type = self.cb_type.currentText()
+
+        if saved_title == "" or saved_author == "" or saved_text == "" or saved_type == "":
+            self.show_error_message()
+            return
+
+        tools.write_to_sources(saved_title, saved_author, saved_text, saved_type)
+        self.show_success_message()
+        self.clear_fields()
+
+
+    def show_success_message(self):
+        msgBox = QtWidgets.QMessageBox()
+        msgBox.setIcon(QtWidgets.QMessageBox.Information)
+
+        msgBox.setText("Your submission has been saved!")
+        msgBox.setWindowTitle("Success!")
+        msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        msgBox.exec_()
+
+
+    def show_error_message(self):
+        msgBox = QtWidgets.QMessageBox()
+        msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+
+        msgBox.setText("All the fields have to be filled!")
+        msgBox.setWindowTitle("Error!")
+        msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        msgBox.exec_()
+
+
+    def clear_fields(self):
+        self.le_title.clear()
+        self.le_author.clear()
+        self.le_text.clear()
+        self.cb_type.setCurrentText("")
 
     def goto_main_window(self, widget):
         widget.setCurrentIndex(0)
