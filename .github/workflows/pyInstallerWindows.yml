@@ -1,0 +1,30 @@
+name: Package Application with Pyinstaller for Windows
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  package:
+    name: package
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Pull Project
+      uses: actions/checkout@v2
+      
+    - name: Package Application
+      uses: JackMcKew/pyinstaller-action-windows@main
+      with:
+        path: src
+
+    - name: Copy img/ folder
+      run: cp -r img/ src/dist/windows/main
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: TypingGame-Windows
+        path: src/dist/windows/main
